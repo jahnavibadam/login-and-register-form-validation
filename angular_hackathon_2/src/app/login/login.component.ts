@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Import Router to handle navigation
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loginError = false; // Flag to indicate login error
+  loginError = false; 
   loginSuccess = false;
   constructor(
     private fb: FormBuilder,
@@ -29,21 +29,16 @@ export class LoginComponent {
         (authenticated) => {
           if (authenticated) {
             this.loginSuccess = true;
-            // Navigate to the dashboard or any other desired route on successful login
-            // Redirect to the dashboard after a delay
+            // Navigate to the dashboard
             setTimeout(() => {
               this.router.navigate(['/dashboard']);
-            }, 2000); // Redirect after 2 seconds (adjust as needed)
+            }, 1000);
           } else {
             this.loginError = true;
-            // Handle authentication failure (e.g., show error message)
           }
         },
         (error) => {
-          // Handle login error (e.g., display a general error message or log the error)
-          // You can display a message like: "An error occurred during login. Please try again later."
           console.error('Login error:', error);
-          // Optionally, you can set 'loginError' to true to show an error message to the user.
           this.loginError = true;
         }
       );

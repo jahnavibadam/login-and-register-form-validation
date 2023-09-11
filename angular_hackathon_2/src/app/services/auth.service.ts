@@ -1,5 +1,3 @@
-// auth.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,11 +9,9 @@ import { NavbarVisibilityService } from './navbar-visibility.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users'; // Replace with your JSON-Server API endpoint
+  private apiUrl = 'http://localhost:3000/users';
 
-  // Use a BehaviorSubject to track authentication status
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  // Expose an Observable to components for authentication status
   authStatus = this.isAuthenticatedSubject.asObservable();
 
   constructor(
@@ -23,7 +19,6 @@ export class AuthService {
     private navbarVisibilityService: NavbarVisibilityService
   ) {}
 
-  // Authenticate user by checking username and password against JSON-Server data
   authenticate(username: string, password: string): Observable<boolean> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map((users) => {
@@ -35,7 +30,7 @@ export class AuthService {
           const isAuthenticated = true;
           this.isAuthenticatedSubject.next(isAuthenticated);
           console.log('Authentication successful');
-          localStorage.setItem('currentUser', JSON.stringify(user)); // Store user data in localStorage
+          localStorage.setItem('currentUser', JSON.stringify(user)); // Store user data in db.json
           const authToken = 'your-auth-token';
           localStorage.setItem("key", authToken);
           this.navbarVisibilityService.updateVisibility(false);
@@ -49,7 +44,6 @@ export class AuthService {
     );
   }
 
-  // Logout the user
   logout(): void {
     console.log('logged out');
     this.isAuthenticatedSubject.next(false);
@@ -59,7 +53,6 @@ export class AuthService {
     
   }
 
-  // Check if a user is currently authenticated
   isAuthenticated(): boolean {
     console.log('isAuthenticated:', !!localStorage.getItem('currentUser'));
     return !!localStorage.getItem('currentUser');

@@ -14,25 +14,7 @@ const routes: Routes = [
   }, // Protect the dashboard route
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  //{
-    //path: 'add-product',
-    //component: AddProductComponent,
-    //canActivate: [AuthGuard],
-  //},
-  //{
-    //path: 'product-list',
-    //component: ProductListComponent, // Add a route for ProductListComponent
-  //},
-  //{
-    //path: 'edit-product/:id',
-    //component: EditProductComponent,
-    //canActivate: [AuthGuard],
-  //},
-  //{
-    //path: 'edit-product/:id',
-    //component: EditProductComponent,
-    //canActivate: [AuthGuard],
-  //},
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

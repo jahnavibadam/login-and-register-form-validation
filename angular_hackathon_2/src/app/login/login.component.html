@@ -1,8 +1,5 @@
-<!-- login.component.html -->
-
 <div class="container">
   <h2>Login</h2>
-  <!-- Display success message using Bootstrap alert -->
   <div *ngIf="loginSuccess" class="alert alert-success">
     Login successful. Redirecting to the dashboard...
   </div>
@@ -11,7 +8,8 @@
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" id="email" formControlName="email" required>
-      <!-- Display error message if email is invalid -->
+
+      <!-- Error message for invalid email -->
       <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
         Email is required.
       </div>
@@ -24,7 +22,7 @@
     <div class="form-group">
       <label for="password">Password:</label>
       <input type="password" class="form-control" id="password" formControlName="password" required>
-      <!-- Display error message if password is empty -->
+      <!-- Error message for empty password-->
       <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
         Password is required.
       </div>
