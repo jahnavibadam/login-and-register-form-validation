@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>Sign Up</h2>
+  <div *ngIf="registrationSuccess" class="alert alert-success">
+    Registration successful. Redirecting to the dashboard...
+  </div>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" formControlName="email" required>
+      <!-- Display error message if email is invalid -->
+      <div *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">
+        Email is required.
+      </div>
+      <div *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+        Please enter a valid email address.
+      </div>
+    </div>
+    
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" formControlName="name" required>
+      <!-- Display error message if name is empty -->
+      <div *ngIf="signupForm.get('name')?.hasError('required') && signupForm.get('name')?.touched">
+        Name is required.
+      </div>
+    </div>
+
+   
+
+    <!-- Mobile Field -->
+    <div class="form-group">
+      <label for="mobile">Mobile No:</label>
+      <input type="tel" class="form-control" id="mobile" formControlName="mobile" required>
+      <!-- Display error message if mobile is invalid -->
+      <div *ngIf="signupForm.get('mobile')?.hasError('required') && signupForm.get('mobile')?.touched">
+        Mobile No is required.
+      </div>
+      <div *ngIf="signupForm.get('mobile')?.hasError('pattern') && signupForm.get('mobile')?.touched">
+        Mobile number should be 10 digits.
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" formControlName="password" required>
+      <!-- Display error message if password is empty -->
+      <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">
+        Password is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+</div>

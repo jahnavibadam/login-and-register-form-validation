@@ -1,0 +1,36 @@
+<!-- login.component.html -->
+
+<div class="container">
+  <h2>Login</h2>
+  <!-- Display success message using Bootstrap alert -->
+  <div *ngIf="loginSuccess" class="alert alert-success">
+    Login successful. Redirecting to the dashboard...
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" formControlName="email" required>
+      <!-- Display error message if email is invalid -->
+      <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+        Email is required.
+      </div>
+      <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+        Please enter a valid email address.
+      </div>
+    </div>
+    
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" formControlName="password" required>
+      <!-- Display error message if password is empty -->
+      <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+        Password is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+
